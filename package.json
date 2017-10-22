@@ -1,0 +1,23 @@
+{
+  "name": "zadanie_18",
+  "version": "1.0.0",
+  "description": "Chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasz-konecki/zadanie_18.git"
+  },
+  "author": "TK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasz-konecki/zadanie_18/issues"
+  },
+  "homepage": "https://github.com/tomasz-konecki/zadanie_18#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
+}
