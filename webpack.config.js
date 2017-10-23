@@ -1,7 +1,8 @@
 const webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
     OptimizeJsPlugin = require('optimize-js-plugin'),
+    path = require('path'),
 
     env = process.env.NODE_ENV || 'development',
 
@@ -24,15 +25,15 @@ if (env === 'production') {
 }
 
 module.exports = {
-    entry: (env !== 'production' ? [
+    entry: ((env !== 'production') ? [
             'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8080',
-            'webpack/hot/only-dev-server',
+            'webpack/hot/only-dev-server'
         ] : []).concat(['./client/index.js']),
     output: {
         filename: './bundle.js',
         path: resolve(__dirname, 'public'),
-    }
+    },
 
     module: {
         rules: [
