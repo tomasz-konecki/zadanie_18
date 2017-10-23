@@ -4,7 +4,8 @@ const webpack = require('webpack'),
     OptimizeJsPlugin = require('optimize-js-plugin'),
     path = require('path'),
 
-    env = process.env.NODE_ENV || 'development',
+    env = process.env.NODE_ENV || 'development';
+
 
     plugins = [new HtmlWebpackPlugin({
         template: './src/index.ejs',
@@ -12,6 +13,7 @@ const webpack = require('webpack'),
         inject: 'body'
         })
     ];
+
 
 console.log('NODE_ENV:', env);
 
@@ -22,17 +24,18 @@ if (env === 'production') {
             sourceMap: false
         })
     );
-}
+};
 
 module.exports = {
-    entry: ((env !== 'production') ? [
-            'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:8080',
-            'webpack/hot/only-dev-server'
-        ] : []).concat(['./client/index.js']),
+    entry: (env !== 'production' ? [
+        'react-hot-loader/patch',
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+    ] : []).concat(['./client/index.js']),
+
     output: {
         filename: './bundle.js',
-        path: resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'public'),
     },
 
     module: {
@@ -60,4 +63,4 @@ module.exports = {
     },
 
     plugins: plugins
-}
+};

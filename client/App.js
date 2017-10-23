@@ -20,7 +20,10 @@ class App extends Component {
     }
 
     render() {
-        return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
+        return (this.state.name !== '' ?
+            this.renderLayout() :
+            this.renderUserForm()
+        )
     }
 
     renderLayout() {
