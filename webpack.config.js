@@ -20,6 +20,7 @@ console.log('NODE_ENV:', env);
 if (env === 'production') {
     plugins.push(
         new webpack.optimize.UglifyJsPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new OptimizeJsPlugin({
             sourceMap: false
         })
