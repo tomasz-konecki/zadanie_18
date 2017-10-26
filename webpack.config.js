@@ -4,7 +4,7 @@ const webpack = require('webpack'),
     OptimizeJsPlugin = require('optimize-js-plugin'),
     path = require('path'),
 
-    env = process.env.NODE_ENV || 'development';
+    env = process.env.NODE_ENV || 'development',
 
 
     plugins = [new HtmlWebpackPlugin({
@@ -24,18 +24,20 @@ if (env === 'production') {
             sourceMap: false
         })
     );
-};
+} else {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+}
 
 module.exports = {
     entry: (env !== 'production' ? [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
+        'webpack/hot/dev-server',
     ] : []).concat(['./client/index.js']),
 
     output: {
         filename: './bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'public')
     },
 
     module: {
@@ -60,6 +62,11 @@ module.exports = {
                 ]
             }
         ]
+    },
+
+    devServer: {
+        hot: true,
+        contentBase: './client'
     },
 
     plugins: plugins
