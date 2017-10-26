@@ -25,8 +25,8 @@ if (env === 'production') {
         })
     );
 } else {
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-};
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+}
 
 module.exports = {
     entry: (env !== 'production' ? [
@@ -37,7 +37,7 @@ module.exports = {
 
     output: {
         filename: './bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'public')
     },
 
     module: {
