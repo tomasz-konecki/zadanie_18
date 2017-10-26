@@ -4,7 +4,7 @@ const webpack = require('webpack'),
     OptimizeJsPlugin = require('optimize-js-plugin'),
     path = require('path'),
 
-    env = process.env.NODE_ENV || 'development';
+    env = process.env.NODE_ENV || 'development',
 
 
     plugins = [new HtmlWebpackPlugin({
@@ -20,18 +20,19 @@ console.log('NODE_ENV:', env);
 if (env === 'production') {
     plugins.push(
         new webpack.optimize.UglifyJsPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         new OptimizeJsPlugin({
             sourceMap: false
         })
     );
+} else {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
 };
 
 module.exports = {
     entry: (env !== 'production' ? [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
+        'webpack/hot/dev-server',
     ] : []).concat(['./client/index.js']),
 
     output: {
@@ -61,6 +62,11 @@ module.exports = {
                 ]
             }
         ]
+    },
+
+    devServer: {
+        hot: true,
+        contentBase: './client'
     },
 
     plugins: plugins
